@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smokebox Website Proposal | Professional Web Development</title>
+    
+    <!-- OG Meta Tags -->
+    <meta property="og:title" content="Smokebox Website Proposal">
+    <meta property="og:description" content="A comprehensive proposal for a modern, responsive website for Smokebox, your premier tobacco, vape, and shisha retailer.">
+    <meta property="og:image" content="https://smokebox.vercel.app/smokebox.jpg">
+    <meta property="og:url" content="https://smokebox.vercel.app">
+    <meta property="og:type" content="website">
+    
+    <link rel="icon" href="/img/smokebox.jpg" type="image">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
+        
+        body, html {
+            overflow-x: hidden;
+        }
+
+        :root {
+            --primary: #1a202c;
+            --secondary: #c53030;
+            --accent: #ed8936;
+            --light: #f7fafc;
+            --dark: #2d3748;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, rgba(26, 32, 44, 0.9) 0%, rgba(45, 55, 72, 0.8) 100%);
+        }
+        
+        .section-divider {
+            height: 100px;
+            background: linear-gradient(to bottom right, var(--primary) 49%, var(--light) 50%);
+        }
+        
+        .flip-card {
+            perspective: 1000px;
+        }
+        
+        .flip-card-inner {
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+        
+        .flip-card:hover .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+        
+        .flip-card-front, .flip-card-back {
+            backface-visibility: hidden;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .flip-card-back {
+            transform: rotateY(180deg);
+        }
+        
+        .service-card {
+            transition: all 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: var(--secondary);
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: 5px;
+            top: 17px;
+            width: 2px;
+            height: calc(100% + 13px);
+            background-color: var(--secondary);
+        }
+        
+        .timeline-item:last-child::after {
+            display: none;
+        }
+        
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            right: 40px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 3px #999;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(37, 211, 102, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+            }
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .nav-active {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+             .package-card {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .package-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .package-card.popular::before {
+            content: 'MOST POPULAR';
+            position: absolute;
+            top: 20px;
+            right: -35px;
+            background: var(--accent);
+            color: white;
+            padding: 5px 40px;
+            font-size: 12px;
+            font-weight: bold;
+            transform: rotate(45deg);
+            z-index: 10;
+        }
+        
+        .feature-list li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .feature-list li i {
+            margin-top: 4px;
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+        
+        .toggle-container {
+            background-color: #e2e8f0;
+            border-radius: 50px;
+            padding: 5px;
+            width: 300px;
+            margin: 0 auto 40px;
+            display: flex;
+            position: relative;
+        }
+        
+        .toggle-option {
+            padding: 10px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            text-align: center;
+            flex: 1;
+            z-index: 2;
+            transition: color 0.3s;
+            font-weight: 600;
+        }
+        
+        .toggle-option.active {
+            color: white;
+        }
+        
+        .toggle-slider {
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            height: calc(100% - 10px);
+            width: calc(50% - 10px);
+            background-color: var(--secondary);
+            border-radius: 50px;
+            transition: transform 0.3s ease;
+            z-index: 1;
+        }
+        
+        .monthly .toggle-slider {
+            transform: translateX(0);
+        }
+        
+        .yearly .toggle-slider {
+            transform: translateX(100%);
+        }
+        
+        .price-display {
+            transition: all 0.3s ease;
+        }
+        
+        .comparison-table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        
+        .comparison-table th, .comparison-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .comparison-table th {
+            background-color: #f7fafc;
+            font-weight: 600;
+        }
+        
+        .comparison-table tr:hover {
+            background-color: #f7fafc;
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-white shadow-md z-50 transition-all duration-300">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center">
+                    <!-- <h1 class="text-2xl font-bold text-gray-800">Smokebox<span class="text-red-600">.</span></h1> -->
+                     <img class="lg:ml-20" src="/img/smokebox.jpg" alt="logo" width="55px">
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#hero" class="text-gray-600 hover:text-red-600 transition-colors nav-link">Home</a>
+                    <a href="#services" class="text-gray-600 hover:text-red-600 transition-colors nav-link">Services</a>
+                    <a href="#features" class="text-gray-600 hover:text-red-600 transition-colors nav-link">Features</a>
+                    <a href="#timeline" class="text-gray-600 hover:text-red-600 transition-colors nav-link">Timeline</a>
+                    <a href="#about" class="text-gray-600 hover:text-red-600 transition-colors nav-link">About Developer</a>
+                    <a href="#packages" class="text-gray-600 hover:text-red-600 transition-colors nav-link">Packages</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-600 focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white py-4 px-4 shadow-lg">
+            <div class="flex flex-col space-y-4">
+                <a href="#hero" class="text-gray-600 hover:text-red-600 transition-colors nav-link">Home</a>
+                <a href="#services" class="text-gray-600 hover:text-red-600 transition-colors nav-link">Services</a>
+                <a href="#features" class="text-gray-600 hover:text-red-600 transition-colors nav-link">Features</a>
+                <a href="#timeline" class="text-gray-600 hover:text-red-600 transition-colors nav-link">Timeline</a>
+                <a href="#about" class="text-gray-600 hover:text-red-600 transition-colors nav-link">About Developer</a>
+                <a href="#packages" class="text-gray-600 hover:text-red-600 transition-colors nav-link">Packages</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="relative min-h-screen flex items-center justify-center bg-cover bg-center" style="background-image: url('/img/smoke.jpeg');">
+        <div class="hero-gradient absolute inset-0"></div>
+        <div class="container mx-auto px-4 z-10 text-center text-white">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6 fade-in">Elevating <span class="var(--secondary">Smokebox</span> Experience</h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto fade-in">A high-converting digital storefront engineered to elevate Smokebox's online presence, drive sales growth, and ensure regulatory compliance.</p>
+            <div class="flex flex-col md:flex-row justify-center gap-4 fade-in">
+                <a href="https://wa.me/+2349039977439?text=Hi,%20I'm%20interested%20in%20your%20website%20proposal%20for%20Smokebox" class="bg-red-600 hover:bg-red-700 text-white font-semibold py-3 px-8 rounded-lg transition-colors">Get Started</a>
+                <a href="#features" class="bg-transparent border-2 border-white hover:bg-white hover:text-gray-800 text-white font-semibold py-3 px-8 rounded-lg transition-colors">View Features</a>
+            </div>
+        </div>
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2">
+            <a href="#services" class="text-white animate-bounce">
+                <i class="fas fa-chevron-down text-2xl"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Comprehensive Web Services</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">I offer a complete suite of services to build and maintain your perfect website</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="service-card bg-gray-50 rounded-xl p-8 shadow-lg">
+                    <div class="text-red-600 mb-4">
+                        <i class="fas fa-laptop-code text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Custom Website Design</h3>
+                    <p class="text-gray-600 mb-4">A unique, visually appealing design that reflects the premium nature of your brand and products.</p>
+                    <ul class="text-gray-600 space-y-2">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i> Responsive Design</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i> Modern UI/UX</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i> Brand Alignment</li>
+                    </ul>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="service-card bg-gray-50 rounded-xl p-8 shadow-lg">
+                    <div class="text-red-600 mb-4">
+                        <i class="fas fa-shopping-cart text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">E-Commerce Integration</h3>
+                    <p class="text-gray-600 mb-4">Seamless online shopping experience with secure payment processing and inventory management.</p>
+                    <ul class="text-gray-600 space-y-2">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i> Product Catalog</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i> Secure Checkout</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i> Inventory Tracking</li>
+                    </ul>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="service-card bg-gray-50 rounded-xl p-8 shadow-lg">
+                    <div class="text-red-600 mb-4">
+                        <i class="fas fa-mobile-alt text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Mobile-First Approach</h3>
+                    <p class="text-gray-600 mb-4">Optimized for all devices with special attention to mobile users who represent the majority of web traffic.</p>
+                    <ul class="text-gray-600 space-y-2">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i> Mobile Optimization</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i> Fast Loading</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i> Touch-Friendly</li>
+                    </ul>
+                </div>
+                
+                <!-- Service 4 -->
+                <div class="service-card bg-gray-50 rounded-xl p-8 shadow-lg">
+                    <div class="text-red-600 mb-4">
+                        <i class="fas fa-search text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">SEO Optimization</h3>
+                    <p class="text-gray-600 mb-4">Improve your search engine rankings to attract more customers looking for your products.</p>
+                    <ul class="text-gray-600 space-y-2">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i> Keyword Optimization</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i> Local SEO</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i> Performance Tracking</li>
+                    </ul>
+                </div>
+                
+                <!-- Service 5 -->
+                <div class="service-card bg-gray-50 rounded-xl p-8 shadow-lg">
+                    <div class="text-red-600 mb-4">
+                        <i class="fas fa-comments text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">WhatsApp Integration</h3>
+                    <p class="text-gray-600 mb-4">Direct communication channel with customers through WhatsApp for inquiries and support.</p>
+                    <ul class="text-gray-600 space-y-2">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i> Click-to-Chat</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i> Automated Responses</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i> Order Notifications</li>
+                    </ul>
+                </div>
+                
+                <!-- Service 6 -->
+                <div class="service-card bg-gray-50 rounded-xl p-8 shadow-lg">
+                    <div class="text-red-600 mb-4">
+                        <i class="fas fa-tools text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Maintenance & Support</h3>
+                    <p class="text-gray-600 mb-4">Ongoing support to keep your website secure, updated, and performing at its best.</p>
+                    <ul class="text-gray-600 space-y-2">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i> Regular Updates</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i> Security Monitoring</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i> Technical Support</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Website Features</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">Designed specifically for the tobacco and vape and other products with your customers in mind</p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <div class="mb-8">
+                        <div class="flex items-start mb-4">
+                            <div class="bg-red-100 p-3 rounded-lg mr-4">
+                                <i class="fas fa-box-open text-red-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">Product Showcase</h3>
+                                <p class="text-gray-600">Beautifully display your tobacco, vape, shisha, and accessories with high-quality images and detailed descriptions.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-8">
+                        <div class="flex items-start mb-4">
+                            <div class="bg-red-100 p-3 rounded-lg mr-4">
+                                <i class="fas fa-filter text-red-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">Advanced Filtering</h3>
+                                <p class="text-gray-600">Allow customers to easily find products by type, brand, price range, and other relevant attributes.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-8">
+                        <div class="flex items-start mb-4">
+                            <div class="bg-red-100 p-3 rounded-lg mr-4">
+                                <i class="fas fa-user-check text-red-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">Age Verification</h3>
+                                <p class="text-gray-600">Responsible age verification system to ensure compliance with regulations and industry standards.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-8">
+                        <div class="flex items-start mb-4">
+                            <div class="bg-red-100 p-3 rounded-lg mr-4">
+                                <i class="fas fa-blog text-red-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">Content Hub</h3>
+                                <p class="text-gray-600">Blog section for product guides, industry news, and smoking culture content to engage your audience.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="relative">
+                    <div class="bg-white rounded-xl shadow-lg p-6">
+                        <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Website Mockup" class="rounded-lg shadow-md">
+                    </div>
+                    <div class="absolute -bottom-6 -left-6 bg-red-600 text-white p-4 rounded-lg shadow-lg">
+                        <p class="font-bold">Responsive Design</p>
+                        <p class="text-sm">Looks great on all devices</p>
+                    </div>
+                    <div class="absolute -top-6 -right-6 bg-[--secondary] text-white p-4 rounded-lg shadow-lg">
+                        <p class="font-bold">Fast Loading</p>
+                        <p class="text-sm">Optimized for performance</p>
+                    </div>
+                </div>
+            </div>
+            
+          
+
+    <!-- WhatsApp API Section -->
+    <section class="py-16 bg-green-50">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-8 md:mb-0">
+                    <h2 class="text-3xl font-bold mb-4">WhatsApp Business Integration</h2>
+                    <p class="text-lg text-gray-700 mb-6">Connect directly with your customers through the world's most popular messaging platform.</p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="bg-green-100 p-2 rounded-full mr-4 mt-1">
+                                <i class="fas fa-check text-green-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Click-to-Chat Widget</h4>
+                                <p class="text-gray-600">Customers can message you directly from your website</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-green-100 p-2 rounded-full mr-4 mt-1">
+                                <i class="fas fa-check text-green-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Automated Responses</h4>
+                                <p class="text-gray-600">Set up quick replies for common inquiries</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-green-100 p-2 rounded-full mr-4 mt-1">
+                                <i class="fas fa-check text-green-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Order Notifications</h4>
+                                <p class="text-gray-600">Send order confirmations and shipping updates</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-green-100 p-2 rounded-full mr-4 mt-1">
+                                <i class="fas fa-check text-green-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Customer Support</h4>
+                                <p class="text-gray-600">Provide personalized assistance through chat</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="md:w-1/2 flex justify-center">
+                    <div class="bg-white rounded-2xl shadow-xl p-6 max-w-sm">
+                        <div class="bg-green-500 text-white rounded-t-2xl -mx-6 -mt-6 p-4 mb-4">
+                            <h3 class="text-xl font-bold">WhatsApp Chat</h3>
+                        </div>
+                        
+                        <div class="space-y-4 mb-6">
+                            <div class="flex items-start">
+                                <div class="bg-green-100 rounded-full p-2 mr-3">
+                                    <i class="fas fa-user text-green-600"></i>
+                                </div>
+                                <div class="bg-gray-100 rounded-lg p-3">
+                                    <p class="text-sm">Hi, I'm interested in your vape products. Can you help me?</p>
+                                    <span class="text-xs text-gray-500">10:24 AM</span>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start justify-end">
+                                <div class="bg-gray-100 rounded-lg p-3 mr-3">
+                                    <p class="text-sm">Of course! We have a wide range of vape devices and e-liquids. What are you looking for specifically?</p>
+                                    <span class="text-xs text-gray-500">10:25 AM</span>
+                                </div>
+                                <div class="bg-green-500 rounded-full p-2">
+                                    <i class="fas fa-user text-white"></i>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-green-100 rounded-full p-2 mr-3">
+                                    <i class="fas fa-user text-green-600"></i>
+                                </div>
+                                <div class="bg-gray-100 rounded-lg p-3">
+                                    <p class="text-sm">I need a starter kit for someone new to vaping.</p>
+                                    <span class="text-xs text-gray-500">10:26 AM</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex">
+                            <input type="text" placeholder="Type a message..." class="flex-grow border rounded-l-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-green-500">
+                            <button class="bg-green-500 text-white rounded-r-lg px-4">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Development Timeline -->
+    <section id="timeline" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Development Timeline</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">A structured approach to deliver your website on time and to your specifications</p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="timeline-item">
+                    <h3 class="text-xl font-bold mb-2">Week 1: Discovery & Planning</h3>
+                    <p class="text-gray-600">Understanding your business, target audience, and specific requirements. Creating sitemap and wireframes.</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <h3 class="text-xl font-bold mb-2">Week 2-3: Design Phase</h3>
+                    <p class="text-gray-600">Creating visual designs for all pages, getting your feedback, and refining the design until perfect.</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <h3 class="text-xl font-bold mb-2">Week 4-5: Development</h3>
+                    <p class="text-gray-600">Building the website with responsive design, e-commerce functionality, and all requested features.</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <h3 class="text-xl font-bold mb-2">Week 6: Testing & Refinement</h3>
+                    <p class="text-gray-600">Thorough testing on all devices and browsers, fixing any issues, and preparing for launch.</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <h3 class="text-xl font-bold mb-2">Week 7: Launch & Training</h3>
+                    <p class="text-gray-600">Going live with your website and providing training on how to manage content and products.</p>
+                </div>
+            </div>
+            <p class="text-center"><b>Note:</b> To meet an aggressive launch date, a priority development fee applies, ensuring dedicated resources for faster delivery.</p>
+        </div>
+    </section>
+
+    <!-- About Developer -->
+    <section id="about" class="py-20 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">About the Developer</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">With expertise in creating high-converting websites for specialty retail businesses</p>
+            </div>
+            
+            <div class="flex flex-col lg:flex-row items-center gap-12 max-w-6xl mx-auto">
+                <div class="lg:w-1/3 flex justify-center">
+                    <div class="relative">
+                        <div class=" flex items-center justify-center text-white text-6xl">
+                            <img class="rounded-3xl" src="/img/me-color.jpg">
+                        </div>
+                        <div class="absolute -bottom-4 -right-4 bg-[#c53030] text-white p-4 rounded-lg shadow-lg">
+                            <p class="font-bold">5+ Years Experience</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="lg:w-2/3">
+                    <h3 class="text-2xl font-bold mb-4">Professional Web Developer</h3>
+                    <p class="text-gray-700 mb-6">I specialize in creating custom, responsive websites that not only look great but also drive business results. With extensive experience in e-commerce development, I understand what it takes to create an online presence that converts visitors into customers.</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                        <div class="flex items-center">
+                            <div class="bg-red-100 p-3 rounded-lg mr-4">
+                                <i class="fas fa-code text-red-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Modern Technologies</h4>
+                                <p class="text-gray-600">HTML5, CSS3, JavaScript, React, Node.js</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center">
+                            <div class="bg-red-100 p-3 rounded-lg mr-4">
+                                <i class="fas fa-mobile-alt text-red-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Responsive Design</h4>
+                                <p class="text-gray-600">Optimized for all devices and screen sizes</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center">
+                            <div class="bg-red-100 p-3 rounded-lg mr-4">
+                                <i class="fas fa-shopping-cart text-red-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">E-Commerce Expertise</h4>
+                                <p class="text-gray-600">Custom online stores with secure payments</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center">
+                            <div class="bg-red-100 p-3 rounded-lg mr-4">
+                                <i class="fas fa-rocket text-red-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Performance Focused</h4>
+                                <p class="text-gray-600">Fast loading times and smooth user experience</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg p-6 shadow-md">
+                        <h4 class="font-bold text-lg mb-3">Why Choose Me for Your Project?</h4>
+                        <ul class="text-gray-700 space-y-2">
+                            <li><i class="fas fa-check text-green-500 mr-2"></i> <strong>Industry Understanding:</strong> Familiar with the specific needs and regulations of tobacco and vape businesses</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i> <strong>Attention to Detail:</strong> Pixel-perfect implementation of designs</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i> <strong>Communication:</strong> Regular updates and responsive to feedback</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i> <strong>Reliability:</strong> On-time delivery and post-launch support</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+       <!-- Packages Section -->
+    <section id="packages" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Choose Your Perfect Package</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">Flexible pricing options designed to grow with your business</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <!-- Basic Package -->
+                <div class="package-card bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden fade-in">
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold mb-2">Basic</h3>
+                        <p class="text-gray-600 mb-6">Perfect for getting started with an online presence</p>
+                        
+                        <div class="mb-6">
+                            <span class="text-4xl font-bold price-display" data-monthly="$899" data-yearly="$719">&#8358;200,000</span>
+                            <span class="text-gray-500 billing-display" data-monthly="one-time" data-yearly="one-time">one-time</span>
+                        </div>
+                        
+                        <ul class="feature-list text-gray-700 mb-8">
+                            <li><i class="fas fa-check text-green-500"></i> Responsive Website Design</li>
+                            <li><i class="fas fa-check text-green-500"></i> Up to 5 Pages</li>
+                            <li><i class="fas fa-check text-green-500"></i> Basic Product Catalog</li>
+                            <li><i class="fas fa-check text-green-500"></i> Contact Form</li>
+                            <li><i class="fas fa-check text-green-500"></i> Social Media Integration</li>
+                            <li><i class="fas fa-times text-gray-400"></i> E-commerce Functionality</li>
+                            <li><i class="fas fa-times text-gray-400"></i> Advanced Filtering</li>
+                            <li><i class="fas fa-times text-gray-400"></i> WhatsApp Integration</li>
+                        </ul>
+                        
+                        <a href="https://wa.me/+2349039977439?text=Hi,%20I'm%20interested%20in%20your%20basic%20package%20for%20Smokebox">
+                        <button class="w-full bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-3 px-4 rounded-lg transition-colors">
+                            Select Basic
+                        </button>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Standard Package -->
+                <div class="package-card bg-white rounded-xl shadow-xl border border-red-200 overflow-hidden fade-in popular">
+                    <div class="p-8">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-2xl font-bold">Standard</h3>
+                            <span class="bg-red-100 text-red-800 text-xs font-semibold px-3 py-1 rounded-full">Most Popular</span>
+                        </div>
+                        <p class="text-gray-600 mb-6">Ideal for growing businesses with e-commerce needs</p>
+                        
+                        <div class="mb-6">
+                            <span class="text-4xl font-bold price-display" data-monthly="$1,499" data-yearly="$1,199">&#8358;350,000</span>
+                            <span class="text-gray-500 billing-display" data-monthly="one-time" data-yearly="one-time">one-time</span>
+                        </div>
+                        
+                        <ul class="feature-list text-gray-700 mb-8">
+                            <li><i class="fas fa-check text-green-500"></i> Everything in Basic</li>
+                            <li><i class="fas fa-check text-green-500"></i> E-commerce Shopping Cart</li>
+                            <li><i class="fas fa-check text-green-500"></i> Up to 50 Products</li>
+                            <li><i class="fas fa-check text-green-500"></i> Secure Payment Gateway</li>
+                            <li><i class="fas fa-check text-green-500"></i> Product Search & Filtering</li>
+                            <li><i class="fas fa-check text-green-500"></i> Basic Age Verification</li>
+                            <li><i class="fas fa-check text-green-500"></i> WhatsApp Click-to-Chat</li>
+                            <li><i class="fas fa-times text-gray-400"></i> Advanced Analytics</li>
+                        </ul>
+                        
+                        <a href="https://wa.me/+2349039977439?text=Hi,%20I'm%20interested%20in%20your%20standard%20package%20for%20Smokebox">
+                        <button class="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-3 px-4 rounded-lg transition-colors">
+                            Select Standard
+                        </button>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Premium Package -->
+                <div class="package-card bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden fade-in">
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold mb-2">Premium</h3>
+                        <p class="text-gray-600 mb-6">Complete solution for established businesses</p>
+                        
+                        <div class="mb-6">
+                            <span class="text-4xl font-bold price-display" data-monthly="$2,499" data-yearly="$1,999">&#8358;500,000</span>
+                            <span class="text-gray-500 billing-display" data-monthly="one-time" data-yearly="one-time">one-time</span>
+                        </div>
+                        
+                        <ul class="feature-list text-gray-700 mb-8">
+                            <li><i class="fas fa-check text-green-500"></i> Everything in Basic</li>
+                            <li><i class="fas fa-check text-green-500"></i> Everything in Standard</li>
+                            <li><i class="fas fa-check text-green-500"></i> Unlimited Products</li>
+                            <li><i class="fas fa-check text-green-500"></i> Advanced Age Verification System</li>
+                            <li><i class="fas fa-check text-green-500"></i> Advanced Analytics Dashboard</li>
+                            <li><i class="fas fa-check text-green-500"></i> Inventory Management System</li>
+                            <li><i class="fas fa-check text-green-500"></i> Full WhatsApp Business API</li>
+                            <li><i class="fas fa-check text-green-500"></i> Priority Support & Maintenance</li>
+                        </ul>
+                        
+                        <a href="https://wa.me/+2349039977439?text=Hi,%20I'm%20interested%20in%20your%20premium%20package%20for%20Smokebox">
+                        <button class="w-full bg-gray-800 hover:bg-black text-white font-semibold py-3 px-4 rounded-lg transition-colors">
+                            Select Premium
+                        </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Section -->
+    <section id="comparison" class="py-20 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Package Comparison</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">See how our packages stack up against each other</p>
+            </div>
+            
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th class="w-1/3">Features</th>
+                                <th class="text-center">Basic</th>
+                                <th class="text-center">Standard</th>
+                                <th class="text-center">Premium</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="font-semibold">Website Pages</td>
+                                <td class="text-center">Up to 5</td>
+                                <td class="text-center">Up to 15</td>
+                                <td class="text-center">Unlimited</td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold">Responsive Design</td>
+                                <td class="text-center"><i class="fas fa-check text-green-500"></i></td>
+                                <td class="text-center"><i class="fas fa-check text-green-500"></i></td>
+                                <td class="text-center"><i class="fas fa-check text-green-500"></i></td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold">E-commerce Functionality</td>
+                                <td class="text-center"><i class="fas fa-times text-gray-400"></i></td>
+                                <td class="text-center"><i class="fas fa-check text-green-500"></i></td>
+                                <td class="text-center"><i class="fas fa-check text-green-500"></i></td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold">Product Listings</td>
+                                <td class="text-center">Basic Catalog</td>
+                                <td class="text-center">Up to 50 Products</td>
+                                <td class="text-center">Unlimited Products</td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold">Payment Gateway</td>
+                                <td class="text-center"><i class="fas fa-times text-gray-400"></i></td>
+                                <td class="text-center">Paystack(Support All)</td>
+                                <td class="text-center">Multiple Options</td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold">Age Verification</td>
+                                <td class="text-center"><i class="fas fa-times text-gray-400"></i></td>
+                                <td class="text-center">Basic System</td>
+                                <td class="text-center">Advanced System</td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold">WhatsApp Integration</td>
+                                <td class="text-center"><i class="fas fa-times text-gray-400"></i></td>
+                                <td class="text-center">Click-to-Chat</td>
+                                <td class="text-center">Full Business API</td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold">Inventory Management</td>
+                                <td class="text-center"><i class="fas fa-times text-gray-400"></i></td>
+                                <td class="text-center">Basic</td>
+                                <td class="text-center">Advanced</td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold">Analytics Dashboard</td>
+                                <td class="text-center">Basic</td>
+                                <td class="text-center">Standard</td>
+                                <td class="text-center">Advanced</td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold">SEO Optimization</td>
+                                <td class="text-center">Basic</td>
+                                <td class="text-center">Standard</td>
+                                <td class="text-center">Advanced</td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold">Support & Maintenance</td>
+                                <td class="text-center">30 Days</td>
+                                <td class="text-center">90 Days</td>
+                                <td class="text-center">1 Year + Priority</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+ <h2 class="text-center font-black font-san"><a class="text-red-400" href="https://linktree-justdavid-tech.vercel.app/">Click me</a> to see my social media handles </h2>
+
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/+2349039977439?text=Hi,%20I'm%20interested%20in%20your%20website%20proposal%20for%20Smokebox" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile Menu Toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    document.getElementById('mobile-menu').classList.add('hidden');
+                }
+            });
+        });
+
+
+        // Scroll Animation
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const fadeInOnScroll = () => {
+            fadeElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if(elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('visible');
+                }
+            });
+        };
+        
+        window.addEventListener('scroll', fadeInOnScroll);
+        // Initial check in case elements are already in view
+        fadeInOnScroll();
+
+        // Active Navigation
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-link');
+        
+        const updateActiveNav = () => {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if(scrollY >= (sectionTop - 100)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('nav-active');
+                if(link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('nav-active');
+                }
+            });
+        };
+        
+        window.addEventListener('scroll', updateActiveNav);
+    </script>
+</body>
+</html>
